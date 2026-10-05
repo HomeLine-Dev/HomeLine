@@ -1,14 +1,371 @@
 <!doctype html>
-    <html lang="ar" dir="rtl" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/HomeLine/assets/logo-CUoxk3jf.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Line</title>
-    <script type="module" crossorigin src="/HomeLine/assets/index-BanITbZs.js"></script>
-    <link rel="stylesheet" crossorigin href="/HomeLine/assets/index-yZoRGIMb.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Home Line | هوم لاين للتطوير العقاري</title>
+<meta name="description" content="Home Line شركة تطوير عقاري تقدم وحدات سكنية متميزة بمواقع استراتيجية، تسهيلات في السداد، وتصاميم ثلاثية الأبعاد. تواصل معنا اليوم لاكتشاف منزلك المثالي." />
+<meta property="og:title" content="Home Line للتطوير العقاري" />
+<meta property="og:description" content="اكتشف منزلك المثالي مع Home Line — مشاريع سكنية بمواقع مميزة وتسهيلات سداد." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/hero.jpg" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="#top" class="brand"><img src="assets/favicon.svg" alt="شعار Home Line" />Home Line</a>
+    <ul class="nav-links">
+      <li><a href="#top">الرئيسية</a></li>
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#projects">المشاريع</a></li>
+      <li><a href="#testimonials">آراء العملاء</a></li>
+      <li><a href="#faq">الأسئلة الشائعة</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-primary">تواصل معنا</a>
+      <button class="nav-toggle" id="navToggle" aria-label="القائمة"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#top">الرئيسية</a>
+    <a href="#about">من نحن</a>
+    <a href="#services">خدماتنا</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#testimonials">آراء العملاء</a>
+    <a href="#faq">الأسئلة الشائعة</a>
+    <a href="#contact">تواصل معنا</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <h1>اكتشف منزلك المثالي مع Home Line</h1>
+    <p>شريكك في التطوير العقاري — مشاريع سكنية بمواقع استراتيجية، تصاميم عصرية، وتسهيلات حقيقية في السداد.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">شاهد مشاريعنا</a>
+      <a href="#contact" class="btn btn-white">تواصل معنا</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>+10</strong><span>سنوات من التميز</span></div>
+      <div><strong>+12</strong><span>مشروع مكتمل</span></div>
+      <div><strong>+20</strong><span>مليون قدم مربع تم تسليمها</span></div>
+      <div><strong>+25</strong><span>مشروع قيد التنفيذ</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-media">
+      <img src="assets/about.jpg" alt="أحد مباني Home Line" />
+      <div class="about-badge"><strong>+10</strong><span>سنوات خبرة</span></div>
+    </div>
+    <div>
+      <div class="eyebrow">من نحن</div>
+      <h2>قصتنا: شغف بالعقارات، مكرّسون لرؤيتك</h2>
+      <p style="margin-top:16px;color:var(--ink-500)">قوة موقع العقار لا تُقدّر بثمن. المشترون غالبًا يبحثون حسب الموقع، لذلك نركّز في عروضنا على المدينة والأحياء والمناطق المجاورة، مع توفير صور ثلاثية الأبعاد توضّح كل تفصيلة قبل اتخاذ قرار الشراء.</p>
+      <div class="stat-grid">
+        <div class="stat-card"><strong>12+</strong><span>مشروع مكتمل</span></div>
+        <div class="stat-card"><strong>25+</strong><span>مشروع قيد التنفيذ</span></div>
+        <div class="stat-card"><strong>20+</strong><span>مليون قدم مربع تم تسليمها</span></div>
+        <div class="stat-card"><strong>10+</strong><span>سنوات من التميز في السوق</span></div>
+      </div>
+      <a href="#contact" class="btn btn-outline">تعرّف على فريقنا</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">خدماتنا</div>
+      <h2>كل اللي محتاجه من البحث لحد الاستلام</h2>
+      <p>نرافقك في كل خطوة من رحلة امتلاك عقارك، من أول استشارة لحد تسليم المفتاح.</p>
+    </div>
+    <div class="card-grid">
+      <div class="service-card">
+        <div class="icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+        <h3>تطوير وتسويق عقاري</h3>
+        <p>تخطيط وتنفيذ مشاريع سكنية بمواقع مدروسة، مع خطة تسويقية تصل للعميل المناسب.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <h3>استشارات شراء واستثمار</h3>
+        <p>نساعدك تختار الوحدة الأنسب لاحتياجك أو لعائد استثماري أفضل، بدون أي ضغط.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
+        <h3>تيسير التمويل والسداد</h3>
+        <p>خطط سداد مرنة تتناسب مع ميزانيتك، مع وضوح كامل في كل بند من بنود التعاقد.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7 13 3 5 7l8 4 8-4Z"/><path d="M5 7v10l8 4 8-4V7"/><path d="M13 11v10"/></svg></div>
+        <h3>تصاميم وعروض 3D</h3>
+        <p>صور وعروض ثلاثية الأبعاد لكل وحدة، عشان تتخيّل بيتك قبل ما تتعاقد.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .7a2 2 0 0 1 1.7 2Z"/></svg></div>
+        <h3>متابعة ما بعد البيع</h3>
+        <p>مدير المبيعات متاح للرد على استفساراتك وتسهيل أي تعديل أو متابعة بعد التعاقد.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></div>
+        <h3>جولات ميدانية للمشروعات</h3>
+        <p>زيارات منظّمة لموقع المشروع على الخريطة مباشرة لمعاينة الموقع والمحيط العمراني.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">رحلتك معانا</div>
+      <h2>من أول تواصل لحد الاستلام في 4 خطوات</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step"><h3>تواصل معنا</h3><p>كلّمنا على الهاتف أو اطلب اتصال من نموذج التواصل.</p></div>
+      <div class="process-step"><h3>معاينة الوحدة</h3><p>شوف صور الـ3D وزور الموقع على الخريطة أو ميدانيًا.</p></div>
+      <div class="process-step"><h3>الحجز والتعاقد</h3><p>اختار نظام السداد المناسب لك وأتمم التعاقد بوضوح.</p></div>
+      <div class="process-step"><h3>التسليم والمتابعة</h3><p>استلام الوحدة مع متابعة مستمرة من مدير المبيعات.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="projects">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">المشاريع المنجزة</div>
+      <h2>نصنع المساحات ونبني الإرث</h2>
+      <p>استكشف أعمالنا الحالية بمنطقة شبرا الخيمة، امتداد أحمد حلمي.</p>
+    </div>
+
+    <div class="project-feature">
+      <img src="assets/project-1.jpg" alt="المشروع الأول - Home Line" />
+      <div class="project-info">
+        <span class="project-tag">المشروع الأول</span>
+        <h3>أربعة أبراج بجوار مستشفى التأمين الصحي (النيل)</h3>
+        <p>شبرا الخيمة، امتداد أحمد حلمي — برجين بأربعة أدوار بنفس مساحة القطعة، مع صور ثلاثية الأبعاد لكل وحدة.</p>
+        <div class="project-badges">
+          <span>أسعار ممتازة</span>
+          <span>تسهيلات في السداد</span>
+          <span>صور 3D</span>
+        </div>
+        <a href="https://maps.app.goo.gl/p7uKnNNpdhV3RLKm6" target="_blank" rel="noopener" class="btn btn-outline">الموقع على الخريطة</a>
+      </div>
+    </div>
+
+    <div class="project-feature">
+      <img src="assets/project-2.jpg" alt="المشروع الثاني - Home Line" />
+      <div class="project-info">
+        <span class="project-tag">المشروع الثاني</span>
+        <h3>أربعة أبراج بجوار مستشفى التأمين الصحي (النيل)</h3>
+        <p>شبرا الخيمة، امتداد أحمد حلمي — برجين بأربعة أدوار بنفس مساحة القطعة، مع صور ثلاثية الأبعاد لكل وحدة.</p>
+        <div class="project-badges">
+          <span>تسهيلات في السداد</span>
+          <span>صور 3D</span>
+        </div>
+        <a href="https://maps.app.goo.gl/KWW1v3XTCN36397B8" target="_blank" rel="noopener" class="btn btn-outline">الموقع على الخريطة</a>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <figure><img src="assets/project-3.jpg" alt="لمحة من تصاميمنا" /></figure>
+      <figure><img src="assets/project-4.jpg" alt="لمحة من تصاميمنا" /></figure>
+      <figure><img src="assets/about.jpg" alt="لمحة من تصاميمنا" /></figure>
+      <figure><img src="assets/hero.jpg" alt="لمحة من تصاميمنا" /></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">آراء العملاء</div>
+      <h2>قصص حقيقية من ناس لقوا بيتهم معانا</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"من أول مقابلة فهموا رؤيتي وساعدوني ألاقي العقار المناسب. تعاملهم محترم جدًا واهتمامهم بالتفاصيل ممتاز."</p>
+        <div class="testi-person">
+          <img src="assets/avatar-1.png" alt="أحمد مصطفى" />
+          <div><strong>أحمد مصطفى</strong><span>مدير تسويق</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"الموقع بتاعهم سهل والتعامل صريح. الأسعار ممتازة وفيه تسهيلات في السداد، فعلًا تجربة جامدة."</p>
+        <div class="testi-person">
+          <img src="assets/avatar-2.png" alt="محمد السيد" />
+          <div><strong>محمد السيد</strong><span>مهندس معماري</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"اشتريت من خلالهم وكنت مرتاح من أول لحظة. التنفيذ كان في الميعاد والجودة على أعلى مستوى."</p>
+        <div class="testi-person">
+          <span class="avatar-fallback">ع.ع</span>
+          <div><strong>عمرو عبدالله</strong><span>صاحب شركة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">الأسئلة الشائعة</div>
+      <h2>عندك سؤال؟ إجابات سريعة هنا</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">إيه أنظمة السداد المتاحة؟<span class="plus">+</span></summary>
+        <p class="faq-a">بنوفر تسهيلات في السداد تختلف نسبتها ومدتها حسب المشروع والوحدة. تواصل مع مدير المبيعات لمعرفة التفاصيل الدقيقة لمشروعك المفضّل.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">فيه صور أو عروض ثلاثية الأبعاد للوحدات؟<span class="plus">+</span></summary>
+        <p class="faq-a">نعم، كل وحدة في مشاريعنا الحالية متوفر لها صور ثلاثية الأبعاد توضّح التصميم الداخلي والخارجي قبل الحجز.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">إزاي أقدر أعاين موقع المشروع؟<span class="plus">+</span></summary>
+        <p class="faq-a">تقدر تفتح رابط الموقع على الخريطة المرفق مع كل مشروع، أو تحدد ميعاد زيارة ميدانية من خلال مكتب المبيعات.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">فين مكتب المبيعات بالظبط؟<span class="plus">+</span></summary>
+        <p class="faq-a">موقع مكتب المبيعات متاح على الخريطة في قسم "تواصل معنا" بالأسفل، وتقدر كمان تتصل بنا مباشرة لتحديد ميعاد.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">مين المسؤول عن متابعة طلبي بعد التواصل؟<span class="plus">+</span></summary>
+        <p class="faq-a">الأستاذ مصطفى أبوزيد، مدير المبيعات، هيكون على تواصل مباشر معاك من أول استفسار لحد التسليم.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center">تواصل معنا</div>
+      <h2>جاهز تتحرك؟ خلينا نبني مستقبلك مع بعض</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card">
+          <div class="icon-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .7a2 2 0 0 1 1.7 2Z"/></svg></div>
+          <div>
+            <h4>أرقام التواصل</h4>
+            <a href="tel:+201500064689" dir="ltr">+20 150 006 4689</a>
+            <a href="tel:+201117071245" dir="ltr">+20 111 707 1245</a>
+            <div class="contact-cta">
+              <a class="btn btn-primary" href="https://wa.me/201500064689" target="_blank" rel="noopener">واتساب</a>
+              <a class="btn btn-outline" href="tel:+201500064689">اتصال مباشر</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="icon-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+          <div>
+            <h4>مدير المبيعات</h4>
+            <p>الأستاذ مصطفى أبوزيد</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="icon-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <h4>مكتب المبيعات</h4>
+            <a href="https://maps.app.goo.gl/fG697gmcEWiPAL4h6" target="_blank" rel="noopener">عرض الموقع على خرائط جوجل</a>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe src="https://maps.google.com/maps?q=%D9%85%D9%83%D8%AA%D8%A8%20%D9%85%D8%A8%D9%8A%D8%B9%D8%A7%D8%AA%20Home%20Line%2C%20%D8%B4%D8%A8%D8%B1%D8%A7%20%D8%A7%D9%84%D8%AE%D9%8A%D9%85%D8%A9&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="موقع مكتب المبيعات"></iframe>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/sammialdin@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="رسالة جديدة من موقع Home Line" />
+        <input type="hidden" name="_captcha" value="false" />
+        <div class="form-field">
+          <label for="name">اسمك</label>
+          <input id="name" name="name" type="text" placeholder="اسمك الكامل" required />
+        </div>
+        <div class="form-field">
+          <label for="email">بريدك الإلكتروني</label>
+          <input id="email" name="email" type="email" placeholder="example@email.com" required />
+        </div>
+        <div class="form-field">
+          <label for="phone">رقم الهاتف</label>
+          <input id="phone" name="phone" type="tel" placeholder="01xxxxxxxxx" />
+        </div>
+        <div class="form-field">
+          <label for="message">رسالتك</label>
+          <textarea id="message" name="message" placeholder="اكتب استفسارك هنا..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">إرسال الرسالة</button>
+        <p style="font-size:.8rem;color:var(--ink-500);margin-top:12px;text-align:center">هيتم تحويلك مؤقتًا لتأكيد الإرسال في أول مرة فقط.</p>
+      </form>
+    </div>
+
+    <div class="cta-banner" style="margin-top:72px">
+      <div>
+        <h3>عايز تعرف أكتر عن وحداتنا المتاحة دلوقتي؟</h3>
+        <p>فريق المبيعات جاهز يرد على كل استفساراتك خلال دقائق.</p>
+      </div>
+      <a href="https://wa.me/201500064689" target="_blank" rel="noopener" class="btn btn-white">كلمنا على واتساب</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/favicon.svg" alt="شعار Home Line" />Home Line</div>
+      <p style="font-size:.9rem;max-width:280px">شركة تطوير عقاري تقدّم مشاريع سكنية بمواقع استراتيجية وتسهيلات حقيقية في السداد.</p>
+      <div class="footer-social" aria-label="تابعنا">
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="فيسبوك"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 9H15V6.5h-1.5C11.6 6.5 10 8.1 10 10.2V12H8v3h2v6h3v-6h2.2l.8-3H13v-1.3c0-.5.4-.7.5-.7Z"/></svg></a>
+        <a href="https://wa.me/201500064689" target="_blank" rel="noopener" aria-label="واتساب"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3Z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#top">الرئيسية</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>الشركة</h4>
+      <ul>
+        <li><a href="#services">خدماتنا</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>تواصل مباشر</h4>
+      <ul>
+        <li><a href="tel:+201500064689" dir="ltr">+20 150 006 4689</a></li>
+        <li><a href="tel:+201117071245" dir="ltr">+20 111 707 1245</a></li>
+        <li>مدير المبيعات: الأستاذ مصطفى أبوزيد</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Home Line. جميع الحقوق محفوظة.</span>
+    <a href="privacy.html">سياسة الخصوصية</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
 </html>
