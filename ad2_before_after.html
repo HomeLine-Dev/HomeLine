@@ -1,0 +1,319 @@
+<title>هوم لاين — قبل وبعد</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
+<style>
+:root {
+  --bg: #060D1A;
+  --surface: #0D1824;
+  --gold: #C9A96E;
+  --gold-lt: #EDCF8A;
+  --gold-dk: #7A5830;
+  --fg: #F0E8D8;
+  --muted: #5A6070;
+  --bad-bg: #1A0808;
+  --bad-txt: #E84040;
+  --good-bg: #051A0D;
+  --good-txt: #4EBF8A;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  overflow: hidden;
+}
+
+.player {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.stage {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--gold-dk);
+  box-shadow: 0 0 60px rgba(201,169,110,.10);
+  position: relative;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6% 8%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+  text-align: center;
+}
+.scene.active { opacity: 1; pointer-events: auto; }
+
+/* bg themes per scene */
+.s1  { background: var(--surface); }
+.s2  { background: var(--bad-bg); }
+.s3  { background: radial-gradient(ellipse at center, #180808 0%, #080408 100%); }
+.s4  { background: radial-gradient(ellipse at bottom, #1A1004 0%, #060A04 100%); }
+.s5  { background: radial-gradient(ellipse at top, #04160A 0%, #040A14 100%); }
+.s6  { background: radial-gradient(ellipse at center, #061A10 0%, #030D08 100%); }
+.s7  { background: radial-gradient(ellipse at 50% 80%, #1A1004 0%, #040D1A 100%); }
+
+/* typography */
+.label {
+  font-size: clamp(.55rem,1.6vw,.7rem);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .4em;
+}
+.headline {
+  font-size: clamp(1rem,3.8vw,1.9rem);
+  font-weight: 900;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.sub {
+  font-size: clamp(.65rem,2.2vw,.95rem);
+  color: var(--muted);
+  margin-top: .5em;
+}
+.em { font-size: clamp(1.8rem,7vw,3.5rem); margin: .15em 0; display: block; }
+.gold { color: var(--gold); }
+.gold-lt { color: var(--gold-lt); }
+.red { color: var(--bad-txt); }
+.green { color: var(--good-txt); }
+
+/* ── split card ── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5em;
+  width: 100%;
+  max-width: 440px;
+  margin-top: .5em;
+}
+.split-card {
+  border-radius: 8px;
+  padding: .5em .6em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .2em;
+}
+.split-card.bad  { background: rgba(232,64,64,.08); border: 1px solid rgba(232,64,64,.3); }
+.split-card.good { background: rgba(78,191,138,.08); border: 1px solid rgba(78,191,138,.3); }
+.split-card .icon  { font-size: clamp(.9rem,3vw,1.4rem); }
+.split-card .title { font-size: clamp(.55rem,1.8vw,.7rem); color: var(--muted); }
+.split-card .val   { font-size: clamp(.75rem,2.5vw,1rem); font-weight: 900; }
+
+/* ── problem list ── */
+.prob-list {
+  list-style: none;
+  width: 100%;
+  max-width: 380px;
+  margin-top: .4em;
+  display: flex;
+  flex-direction: column;
+  gap: .25em;
+}
+.prob-list li {
+  background: rgba(232,64,64,.06);
+  border: 1px solid rgba(232,64,64,.2);
+  border-radius: 6px;
+  padding: .3em .7em;
+  font-size: clamp(.65rem,2.2vw,.9rem);
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  color: var(--bad-txt);
+}
+
+/* ── solution list ── */
+.sol-list {
+  list-style: none;
+  width: 100%;
+  max-width: 380px;
+  margin-top: .4em;
+  display: flex;
+  flex-direction: column;
+  gap: .25em;
+}
+.sol-list li {
+  background: rgba(78,191,138,.06);
+  border: 1px solid rgba(78,191,138,.2);
+  border-radius: 6px;
+  padding: .3em .7em;
+  font-size: clamp(.65rem,2.2vw,.9rem);
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  color: var(--good-txt);
+}
+
+/* brand */
+.brand-logo {
+  font-size: clamp(1.4rem,5vw,2.8rem);
+  font-weight: 900;
+  color: var(--gold-lt);
+}
+.brand-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin: .5em auto;
+}
+.brand-tagline { font-size: clamp(.5rem,1.8vw,.75rem); color: var(--muted); letter-spacing: .08em; }
+
+/* progress */
+.progress-bar { width:100%; height:3px; background:rgba(255,255,255,.06); border-radius:0 0 12px 12px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--gold-dk),var(--gold-lt)); width:0%; }
+
+/* controls */
+.controls { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:12px; }
+.btn-replay {
+  background:transparent; border:1px solid var(--gold-dk); color:var(--gold);
+  font-family:'Cairo',sans-serif; font-size:.8rem; padding:.45em 1.2em;
+  border-radius:100px; cursor:pointer; transition:all .2s;
+}
+.btn-replay:hover { background:rgba(201,169,110,.1); border-color:var(--gold); }
+.scene-counter { font-size:.75rem; color:var(--muted); }
+
+/* animations */
+@keyframes bounce-in {
+  0%  { transform:scale(0) rotate(-15deg); opacity:0; }
+  60% { transform:scale(1.1) rotate(4deg);  opacity:1; }
+  100%{ transform:scale(1)   rotate(0deg);  opacity:1; }
+}
+@keyframes slide-up { from{transform:translateY(20px);opacity:0} to{transform:none;opacity:1} }
+@keyframes pulse-gold {
+  0%,100%{ text-shadow:0 0 8px var(--gold); }
+  50%    { text-shadow:0 0 30px var(--gold-lt),0 0 60px var(--gold); }
+}
+.bounce-in { animation:bounce-in .55s cubic-bezier(.34,1.56,.64,1) both; }
+.slide-up  { animation:slide-up .45s ease both; }
+.glow-gold { animation:pulse-gold 1.8s ease-in-out infinite; }
+@keyframes sweat-drip {
+  0%,100%{transform:translateY(0);opacity:1}
+  50%{transform:translateY(10px);opacity:.3}
+}
+.sweat span { display:inline-block; font-size:clamp(.6rem,2vw,.9rem); animation:sweat-drip 1s ease-in-out infinite; }
+.sweat span:nth-child(2){animation-delay:.2s}
+.sweat span:nth-child(3){animation-delay:.4s}
+</style>
+
+<div class="player">
+  <div class="stage">
+
+    <!-- S1: Opening -->
+    <div class="scene s1 active" id="s1">
+      <div class="label">إعلان هوم لاين — الحلقة الثانية</div>
+      <span class="em bounce-in">😤</span>
+      <div class="headline gold-lt">يوم عادي في حياة<br>المواطن المصري</div>
+      <div class="sub">قبل ما يعرف هوم لاين...</div>
+    </div>
+
+    <!-- S2: The problem (far from hospital) -->
+    <div class="scene s2" id="s2">
+      <span class="em">🤒</span>
+      <div class="label">الساعة 3 الصبح:</div>
+      <div class="headline red">"محتاج دكتور... <br>المستشفى أد ايه بعيد؟"</div>
+      <div class="sub" style="color:var(--bad-txt);font-weight:700;font-size:clamp(.8rem,2.8vw,1.2rem);">47 دقيقة بالعجلة 🚗💨</div>
+      <div class="sweat" style="margin-top:.4em"><span>💧</span><span>💧</span><span>💧</span></div>
+    </div>
+
+    <!-- S3: More problems -->
+    <div class="scene s3" id="s3">
+      <div class="label">مشاكل يومية مضمونة:</div>
+      <ul class="prob-list">
+        <li>😤 المترو... نص ساعة بالمواصلات</li>
+        <li>🛍️ الجنينة مول... "يلا نتحرك بدري"</li>
+        <li>🏫 المدارس... "ودّيه وهات... ودّيه وهات"</li>
+        <li>🛣️ الدائري... "بكرة بكرة"</li>
+      </ul>
+      <div class="sub" style="margin-top:.5em;color:var(--bad-txt);">وفي الآخر... الإيجار بيتعلى 📈</div>
+    </div>
+
+    <!-- S4: The pivot -->
+    <div class="scene s4" id="s4">
+      <span class="em" style="font-size:clamp(2.5rem,9vw,4.5rem)">💡</span>
+      <div class="headline gold-lt" style="font-size:clamp(1.2rem,4.5vw,2.2rem);">في أوضة تانية على الكوكب...</div>
+      <div class="sub">في حي اسمه شبرا الخيمة<br>في مشروع اسمه...</div>
+    </div>
+
+    <!-- S5: HomeLine reveal -->
+    <div class="scene s5" id="s5">
+      <div class="brand-logo glow-gold bounce-in">HomeLine</div>
+      <div class="brand-divider"></div>
+      <div class="headline gold" style="font-size:clamp(.85rem,3vw,1.3rem);">كل حاجة... في أد ما تقوله!</div>
+      <span class="em" style="margin:.1em 0;font-size:clamp(1.5rem,5vw,2.5rem)">🎯</span>
+    </div>
+
+    <!-- S6: The good life -->
+    <div class="scene s6" id="s6">
+      <div class="label slide-up">مع هوم لاين... الدنيا اتغيرت:</div>
+      <div class="split slide-up" style="animation-delay:.15s">
+        <div class="split-card bad"><span class="icon">😴</span><span class="title">قبل</span><span class="val">47 د للمستشفى</span></div>
+        <div class="split-card good"><span class="icon">🏥</span><span class="title">مع هوم لاين</span><span class="val">1.8 كم ✓</span></div>
+        <div class="split-card bad"><span class="icon">😓</span><span class="title">قبل</span><span class="val">نص ساعة للمترو</span></div>
+        <div class="split-card good"><span class="icon">🚇</span><span class="title">مع هوم لاين</span><span class="val">1.1 كم ✓</span></div>
+      </div>
+    </div>
+
+    <!-- S7: Outro -->
+    <div class="scene s7" id="s7">
+      <span class="em bounce-in" style="font-size:clamp(1.8rem,7vw,3.5rem)">🏡</span>
+      <div class="brand-logo">HomeLine</div>
+      <div class="brand-divider"></div>
+      <div class="headline gold-lt" style="font-size:clamp(.85rem,3vw,1.3rem);">موقع استراتيجي · قلب شبرا الخيمة</div>
+      <div class="brand-tagline">امتداد أحمد حلمي · بجوار مستشفى التأمين الصحي النيل</div>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="pbar"></div></div>
+  </div>
+  <div class="controls">
+    <span class="scene-counter" id="counter">١ / ٧</span>
+    <button class="btn-replay" onclick="restart()">↩ تشغيل مرة أخرى</button>
+  </div>
+</div>
+
+<script>
+const scenes=['s1','s2','s3','s4','s5','s6','s7'];
+const durations=[2200,2800,3200,2600,2400,3200,3800];
+const ar=['١','٢','٣','٤','٥','٦','٧'];
+let cur=0,timer;
+
+function showScene(i){
+  scenes.forEach((id,idx)=>document.getElementById(id).classList.toggle('active',idx===i));
+  document.getElementById('counter').textContent=ar[i]+' / ٧';
+}
+function animateBar(dur){
+  const b=document.getElementById('pbar');
+  b.style.transition='none';b.style.width='0%';
+  void b.offsetWidth;
+  b.style.transition=`width ${dur}ms linear`;b.style.width='100%';
+}
+function advance(){
+  cur++;
+  if(cur>=scenes.length){cur=scenes.length-1;return;}
+  showScene(cur);animateBar(durations[cur]);
+  timer=setTimeout(advance,durations[cur]);
+}
+function restart(){
+  clearTimeout(timer);cur=0;
+  showScene(0);animateBar(durations[0]);
+  timer=setTimeout(advance,durations[0]);
+}
+restart();
+</script>

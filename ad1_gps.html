@@ -1,0 +1,387 @@
+<title>هوم لاين — GPS المكسور</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap">
+<style>
+/* Dark cinematic gold — Home Line brand */
+:root {
+  --bg: #060D1A;
+  --surface: #0D1C2E;
+  --gold: #C9A96E;
+  --gold-lt: #EDCF8A;
+  --gold-dk: #7A5830;
+  --fg: #F0E8D8;
+  --muted: #6A7080;
+  --red: #E84040;
+  --panic: #FF6B35;
+  --green: #4EBF8A;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  overflow: hidden;
+}
+
+/* ── video wrapper ── */
+.player {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--gold-dk);
+  box-shadow: 0 0 60px rgba(201,169,110,.12);
+}
+
+/* ── scenes ── */
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease;
+  text-align: center;
+}
+.scene.active { opacity: 1; pointer-events: auto; }
+
+/* scene backgrounds */
+.scene-1 { background: radial-gradient(ellipse at center, #0D2040 0%, #06100D 100%); }
+.scene-2 { background: radial-gradient(ellipse at center, #200808 0%, #0A0608 100%); }
+.scene-3 { background: radial-gradient(ellipse at center, #201008 0%, #0A0604 100%); }
+.scene-4 { background: radial-gradient(ellipse at center, #080820 0%, #060A1A 100%); }
+.scene-5 { background: radial-gradient(ellipse at center, #081820 0%, #04100A 100%); }
+.scene-6 { background: radial-gradient(ellipse at center, #0D1A08 0%, #060D04 100%); }
+.scene-7 { background: radial-gradient(ellipse at 50% 80%, #1A1004 0%, #060D1A 100%); }
+
+/* ── typography ── */
+.label {
+  font-size: clamp(.6rem, 1.8vw, .75rem);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .5em;
+}
+.headline {
+  font-size: clamp(1.1rem, 4vw, 2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.sub {
+  font-size: clamp(.7rem, 2.5vw, 1rem);
+  color: var(--muted);
+  margin-top: .6em;
+}
+.gold { color: var(--gold); }
+.gold-lt { color: var(--gold-lt); }
+.red { color: var(--red); }
+.panic-txt { color: var(--panic); }
+.green { color: var(--green); }
+
+/* ── GPS face emoji ── */
+.face {
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  line-height: 1;
+  margin-bottom: .3em;
+  display: block;
+}
+
+/* ── panic shake animation ── */
+@keyframes shake {
+  0%,100%{ transform: translateX(0) rotate(0deg); }
+  15%     { transform: translateX(-6px) rotate(-3deg); }
+  30%     { transform: translateX(6px) rotate(3deg); }
+  45%     { transform: translateX(-4px) rotate(-2deg); }
+  60%     { transform: translateX(4px) rotate(2deg); }
+  75%     { transform: translateX(-2px) rotate(-1deg); }
+}
+.shake { animation: shake .4s ease infinite; }
+
+@keyframes pulse-gold {
+  0%,100%{ text-shadow: 0 0 8px var(--gold); }
+  50%    { text-shadow: 0 0 30px var(--gold-lt), 0 0 60px var(--gold); }
+}
+.glow-gold { animation: pulse-gold 1.8s ease-in-out infinite; }
+
+@keyframes bounce-in {
+  0%  { transform: scale(0) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+  100%{ transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.bounce-in { animation: bounce-in .6s cubic-bezier(.34,1.56,.64,1) both; }
+
+@keyframes slide-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.slide-up { animation: slide-up .5s ease both; }
+
+@keyframes count-up { from { opacity: .3; } to { opacity: 1; } }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── distance badge ── */
+.dist-badge {
+  display: inline-block;
+  padding: .3em .9em;
+  border-radius: 100px;
+  font-weight: 900;
+  font-size: clamp(1rem, 4.5vw, 2.2rem);
+  margin: .3em 0;
+  border: 2px solid currentColor;
+}
+.dist-badge.bad  { color: var(--red); border-color: var(--red); background: rgba(232,64,64,.1); }
+.dist-badge.good { color: var(--green); border-color: var(--green); background: rgba(78,191,138,.1); }
+
+/* ── grid of distances ── */
+.dist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5em;
+  width: 100%;
+  max-width: 420px;
+  margin-top: .6em;
+}
+.dist-item {
+  background: rgba(201,169,110,.08);
+  border: 1px solid var(--gold-dk);
+  border-radius: 8px;
+  padding: .5em .7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .15em;
+}
+.dist-item .icon { font-size: clamp(1rem, 3.5vw, 1.6rem); }
+.dist-item .name { font-size: clamp(.55rem, 1.8vw, .75rem); color: var(--muted); }
+.dist-item .km   { font-size: clamp(.8rem, 2.8vw, 1.1rem); font-weight: 900; color: var(--gold); }
+
+/* ── brand ── */
+.brand-logo {
+  font-size: clamp(1.4rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--gold-lt);
+  letter-spacing: .05em;
+}
+.brand-tagline {
+  font-size: clamp(.55rem, 2vw, .85rem);
+  color: var(--muted);
+  letter-spacing: .1em;
+  margin-top: .3em;
+}
+.brand-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: .6em auto;
+}
+
+/* ── progress bar ── */
+.progress-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,.08);
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt));
+  width: 0%;
+  transition: width linear;
+}
+
+/* ── controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+.btn-replay {
+  background: transparent;
+  border: 1px solid var(--gold-dk);
+  color: var(--gold);
+  font-family: 'Cairo', sans-serif;
+  font-size: .8rem;
+  padding: .45em 1.2em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-replay:hover { background: rgba(201,169,110,.1); border-color: var(--gold); }
+.scene-counter { font-size: .75rem; color: var(--muted); }
+
+/* special animations for scene 3 */
+@keyframes spin-crazy {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(90deg) scale(1.2); }
+  50%  { transform: rotate(180deg) scale(0.8); }
+  75%  { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.spin-face { animation: spin-crazy .8s ease-in-out infinite; display: inline-block; }
+
+/* sweat drops */
+.sweat {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: .4em;
+}
+.sweat span {
+  font-size: clamp(.6rem, 2.5vw, 1rem);
+  animation: drip 1.2s ease-in-out infinite;
+}
+.sweat span:nth-child(2) { animation-delay: .2s; }
+.sweat span:nth-child(3) { animation-delay: .4s; }
+@keyframes drip {
+  0%,100%{ transform: translateY(0); opacity: 1; }
+  50%    { transform: translateY(8px); opacity: .4; }
+}
+</style>
+
+<!-- Scene 1: Intro -->
+<div class="player">
+  <div class="stage">
+
+    <div class="scene scene-1 active" id="s1">
+      <span class="face">🗺️</span>
+      <div class="label">إعلان هوم لاين</div>
+      <div class="headline gold-lt">GPS مصر</div>
+      <div class="sub">لما تيجي تعرف إنت فين بالظبط...</div>
+    </div>
+
+    <!-- Scene 2: First panic -->
+    <div class="scene scene-2" id="s2">
+      <span class="face shake">😱</span>
+      <div class="label">GPS يقول:</div>
+      <div class="headline red">"جاري إعادة الحساب..."</div>
+      <div class="dist-badge bad">47 دقيقة</div>
+      <div class="sub">للوصول للمستشفى القريب 😅</div>
+    </div>
+
+    <!-- Scene 3: Second panic -->
+    <div class="scene scene-3" id="s3">
+      <span class="spin-face" id="spinFace">🤯</span>
+      <div class="label">GPS على وشك ينهار:</div>
+      <div class="headline panic-txt">"إعادة حساب... مرة تانية!"</div>
+      <div class="dist-badge bad">1 ساعة 23 دقيقة</div>
+      <div class="sub">للمترو... اللي "قريب"</div>
+      <div class="sweat"><span>💧</span><span>💧</span><span>💧</span></div>
+    </div>
+
+    <!-- Scene 4: GPS breakdown -->
+    <div class="scene scene-4" id="s4">
+      <span class="face">📱</span>
+      <div class="headline red" style="font-size:clamp(0.9rem,3vw,1.4rem);">
+        "لقد وصلت الى... لقد وصلت... لقد..."
+      </div>
+      <div style="font-size:clamp(2rem,8vw,4rem);margin:.2em 0;">💀</div>
+      <div class="sub muted">GPS انهار من الحمل الزائد</div>
+    </div>
+
+    <!-- Scene 5: Solution -->
+    <div class="scene scene-5" id="s5">
+      <span class="face" style="animation:bounce-in .6s ease both;">🏠</span>
+      <div class="label">الحل الوحيد:</div>
+      <div class="headline gold-lt glow-gold">مشروع هوم لاين!</div>
+      <div class="sub">وGPS فرح... أخيراً</div>
+    </div>
+
+    <!-- Scene 6: Distances -->
+    <div class="scene scene-6" id="s6">
+      <div class="label slide-up" style="animation-delay:.1s">مسافات تجنن</div>
+      <div class="headline gold slide-up" style="animation-delay:.2s;font-size:clamp(.9rem,3vw,1.3rem);">GPS بقى مبسوط 😄</div>
+      <div class="dist-grid slide-up" style="animation-delay:.3s">
+        <div class="dist-item"><span class="icon">🏥</span><span class="name">مستشفى النيل</span><span class="km">1.8 كم</span></div>
+        <div class="dist-item"><span class="icon">🚇</span><span class="name">مترو مزلة</span><span class="km">1.1 كم</span></div>
+        <div class="dist-item"><span class="icon">🛣️</span><span class="name">الطريق الدائري</span><span class="km">2.5 كم</span></div>
+        <div class="dist-item"><span class="icon">🛍️</span><span class="name">مول البيمي</span><span class="km">1.3 كم</span></div>
+      </div>
+    </div>
+
+    <!-- Scene 7: Branding -->
+    <div class="scene scene-7" id="s7">
+      <div class="brand-logo bounce-in">HomeLine</div>
+      <div class="brand-divider"></div>
+      <div class="headline gold-lt" style="font-size:clamp(.9rem,3vw,1.4rem);">موقع استراتيجي في قلب شبرا الخيمة</div>
+      <div class="brand-tagline">امتداد أحمد حلمي · بجوار مستشفى التأمين الصحي النيل</div>
+      <div style="margin-top:.8em;font-size:clamp(1.5rem,5vw,2.5rem)">🎉</div>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="pbar"></div></div>
+  </div>
+
+  <div class="controls">
+    <span class="scene-counter" id="counter">١ / ٧</span>
+    <button class="btn-replay" id="replayBtn" onclick="restart()">↩ تشغيل مرة أخرى</button>
+  </div>
+</div>
+
+<script>
+const scenes = ['s1','s2','s3','s4','s5','s6','s7'];
+const durations = [2200, 2800, 2800, 2600, 2200, 3200, 3500];
+const arabicNums = ['١','٢','٣','٤','٥','٦','٧'];
+let cur = 0, timer, startTime, rafId;
+
+function showScene(i) {
+  scenes.forEach((id, idx) => {
+    document.getElementById(id).classList.toggle('active', idx === i);
+  });
+  document.getElementById('counter').textContent = arabicNums[i] + ' / ٧';
+}
+
+function animateBar(dur) {
+  const bar = document.getElementById('pbar');
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  void bar.offsetWidth;
+  bar.style.transition = `width ${dur}ms linear`;
+  bar.style.width = '100%';
+}
+
+function advance() {
+  cur++;
+  if (cur >= scenes.length) { cur = scenes.length - 1; return; }
+  showScene(cur);
+  animateBar(durations[cur]);
+  timer = setTimeout(advance, durations[cur]);
+}
+
+function restart() {
+  clearTimeout(timer);
+  cur = 0;
+  showScene(0);
+  animateBar(durations[0]);
+  timer = setTimeout(advance, durations[0]);
+}
+
+restart();
+</script>
